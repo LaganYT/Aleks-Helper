@@ -1,6 +1,6 @@
 # InterALEKS
 
-A Chrome extension that enables the Enter key for answer submission on ALEKS (Assessment and Learning in Knowledge Spaces).
+InterALEKS, formerly known as ALEKS Helper is a Chrome extension that enables the Enter key for answer submission on ALEKS (Assessment and Learning in Knowledge Spaces).
 
 ## 📖 Overview
 
