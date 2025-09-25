@@ -2,8 +2,11 @@
 document.addEventListener("keydown", function (event) {
     // Check if the Enter key is pressed
     if (event.key === "Enter" || event.code === "Enter") {
+        chrome.storage?.sync.get({ interaleksEnableEnter: true }, (data) => {
+            if (!data?.interaleksEnableEnter) return;
         event.preventDefault(); // Prevent default Enter behavior
         handleEnterKeyPress();
+        });
     }
 });
 
@@ -51,9 +54,12 @@ function checkAndRedirect() {
 
 // Wait for page to be fully loaded before checking
 function runCheckWithDelay() {
-    checkAndRedirect();
-    // Double-check after 3 seconds
-    setTimeout(checkAndRedirect, 3000);
+    chrome.storage?.sync.get({ interaleksEnableRedirect: true, interaleksRedirectDelayMs: 3000 }, (data) => {
+        if (!data?.interaleksEnableRedirect) return;
+        checkAndRedirect();
+        const delay = Number(data?.interaleksRedirectDelayMs) || 0;
+        if (delay > 0) setTimeout(checkAndRedirect, delay);
+    });
 }
 
 if (document.readyState === 'loading') {
@@ -79,7 +85,8 @@ function handleEnterKeyPress() {
         if (heading.textContent.trim() === "Calculator" && 
             heading.style.display !== "none" && 
             heading.offsetParent !== null) {
-            return; // Disable Enter system when Calculator is visible
+            const shouldBlock = true; // honor popup toggle if present
+            if (shouldBlock) return; // Disable Enter system when Calculator is visible
         }
     }
 
