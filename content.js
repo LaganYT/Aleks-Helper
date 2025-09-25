@@ -67,25 +67,43 @@ if (document.readyState === 'loading') {
 }
 
 function handleEnterKeyPress() {
-    // Try to click the "Check Answer" button first
-    const checkAnswerButton = document.getElementById("smt_bottomnav_button_input_checkAnswer");
-    if (checkAnswerButton && !checkAnswerButton.disabled && checkAnswerButton.style.display !== "none") {
-        checkAnswerButton.click();
-        return;
-    }
+    // Priority order as requested: Start now, Submit, Start, Continue my path, Check, Next, Try another, Check, Continue
+    const idsInPriorityOrder = [
+        // Start now
+        "smt_bottomnav_button_input_goto_placement",
+        // Submit
+        "smt_bottomnav_button_input_nextItemAssess",
+        "smt_bottomnav_button_input_submit",
+        // Start
+        "smt_bottomnav_button_input_startAssignment",
+        "smt_bottomnav_button_input_startPrep",
+        // Continue my path
+        "smt_bottomnav_button_input_newItem",
+        // Check (both variants)
+        "smt_bottomnav_button_input_checkAnswer",
+        "smt_bottomnav_button_input_nextItem",
+        // Next (several variants)
+        "smt_bottomnav_button_input_learningCorrect",
+        "smt_bottomnav_button_input_nextQuestionAssignment",
+        "smt_bottomnav_button_input_next",
+        "smt_bottomnav_button_input_nextPage",
+        "smt_bottomnav_button_input_nextSurvey",
+        // Try another
+        "smt_bottomnav_button_input_tryAnother",
+        // Check again (fallback)
+        "smt_bottomnav_button_input_checkAnswer",
+        // Continue (variants)
+        "smt_bottomnav_button_input_startItem",
+        "smt_bottomnav_button_input_continue",
+        // Generic learning/next
+        "smt_bottomnav_button_input_learning",
+    ];
 
-    // If "Check Answer" is not available, try the "Next" button
-    const nextButton = document.getElementById("smt_bottomnav_button_input_learningCorrect");
-    if (nextButton && !nextButton.disabled && nextButton.style.display !== "none") {
-        nextButton.click();
-        return;
+    for (const id of idsInPriorityOrder) {
+        const el = document.getElementById(id);
+        if (el && !el.disabled && el.style.display !== "none") {
+            el.click();
+            return;
+        }
     }
-
-    // Fallback: try generic learning/next button
-    const learningButton = document.getElementById("smt_bottomnav_button_input_learning");
-    if (learningButton && !learningButton.disabled && learningButton.style.display !== "none") {
-        learningButton.click();
-        return;
-    }
-
 }
