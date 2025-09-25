@@ -36,10 +36,19 @@ InterALEKS is a simple but useful Chrome extension that allows you to press the 
    - "Check Answer" button (if available and not disabled)
    - "Next" button (if "Check Answer" is not available)
 
+### Redirect behavior and settings
+- If ALEKS shows a page saying "Sorry, this page cannot be displayed due to your browser setting" and mentions cookies being blocked, the extension will automatically redirect you to the login page you prefer.
+- If the page title contains "Session Closed" (like "ALEKS - Session Closed") or "Sorry, this page cannot be displayed due to your browser setting" (like "ALEKS - Sorry, this page cannot be displayed due to your browser setting."), InterALEKS will redirect you to your chosen login page.
+- The extension also checks page content for these messages as a fallback.
+- Click the extension icon to open settings and choose your login method:
+  - **ALEKS** (default): `https://www.aleks.com/login`
+  - **McGraw Hill**: `https://my.mheducation.com/login/`
+- Your selection is saved using browser sync storage and used for future redirects.
+
 ## 🔧 Technical Details
 
 - **Manifest Version**: 3
-- **Permissions**: Only requires access to ALEKS domains (`https://*.aleks.com/*`)
+- **Permissions**: Uses storage and access to ALEKS and McGraw Hill domains
 - **Content Script**: Injects functionality into ALEKS pages
 - **Browser Support**: Chrome and Chromium-based browsers
 
@@ -49,7 +58,9 @@ InterALEKS is a simple but useful Chrome extension that allows you to press the 
 InterALEKS/
 ├── manifest.json          # Extension configuration
 ├── content.js            # Main functionality script
-└── README.md            # This file
+├── popup.html            # Settings UI (choose login method)
+├── popup.js              # Settings logic (persist preference)
+└── README.md             # This file
 ```
 
 ## 🛠️ Development

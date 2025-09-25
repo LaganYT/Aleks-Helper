@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>InterALEKS Settings</title>
+    <style>
+        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 12px; }
+        h1 { font-size: 16px; margin: 0 0 10px; }
+        .option { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+        button { margin-top: 10px; width: 100%; padding: 6px 8px; }
+        small { color: #666; }
+    </style>
+    <script defer src="popup.js"></script>
+    </head>
+<body>
+    <h1>Login method</h1>
+    <label class="option">
+        <input type="radio" name="login" value="aleks">
+        <span>ALEKS</span>
+    </label>
+    <label class="option">
+        <input type="radio" name="login" value="mcgrawhill">
+        <span>McGraw Hill</span>
+    </label>
+    <button id="save">Save</button>
+    <div id="status"><small></small></div>
+</body>
+</html>
+
