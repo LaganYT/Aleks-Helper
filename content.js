@@ -67,6 +67,22 @@ if (document.readyState === 'loading') {
 }
 
 function handleEnterKeyPress() {
+    // Check if blocking element is present and visible
+    const blockingElement = document.getElementById("ej9lur1fx5");
+    if (blockingElement && blockingElement.style.display !== "none" && blockingElement.offsetParent !== null) {
+        return; // Disable Enter system when blocking element is visible
+    }
+
+    // Check if Calculator heading is visible
+    const calculatorHeadings = document.querySelectorAll('[role="heading"][aria-level="2"]');
+    for (const heading of calculatorHeadings) {
+        if (heading.textContent.trim() === "Calculator" && 
+            heading.style.display !== "none" && 
+            heading.offsetParent !== null) {
+            return; // Disable Enter system when Calculator is visible
+        }
+    }
+
     // Priority order as requested: Start now, Submit, Start, Continue my path, Check, Next, Try another, Check, Continue
     const idsInPriorityOrder = [
         // Start now
