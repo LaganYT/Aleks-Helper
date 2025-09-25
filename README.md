@@ -4,14 +4,16 @@ InterALEKS, formerly known as ALEKS Helper is a Chrome extension that enables th
 
 ## 📖 Overview
 
-InterALEKS is a simple but useful Chrome extension that allows you to press the Enter key when submitting answers on the ALEKS platform. This improves the user experience by providing a more intuitive way to submit answers without having to click the submit button with your mouse.
+InterALEKS is a Chrome extension that streamlines ALEKS by enabling Enter-key actions and smart redirects, with a configurable settings popup.
 
 ## ✨ Features
 
-- **Enter Key Support**: Press Enter to submit your answers on ALEKS
-- **Smart Button Detection**: Automatically detects and clicks the appropriate button (Check Answer or Next)
-- **Non-intrusive**: Works seamlessly in the background without affecting ALEKS functionality
-- **Lightweight**: Minimal resource usage with only 3.75KiB size
+- **Enter key actions**: Press Enter to trigger the right action automatically
+  - Priority order (when visible/enabled): Start Now → Submit → Start → Continue My Path → Check → Next → Try Another → Check → Continue
+  - Safeguards: Disables Enter if a Calculator heading is visible or if `#ej9lur1fx5` is on-screen
+- **Auto-redirects**: Detects session closed/cookie-block pages and sends you to your chosen login
+- **Configurable**: Toggle Enter and Redirect behavior, set delayed re-check, and pick login method (ALEKS or McGraw Hill)
+- **Modern popup UI**: Dark themed, compact, with Save/Reset and synced settings
 
 ## 🚀 Installation
 
@@ -32,23 +34,28 @@ InterALEKS is a simple but useful Chrome extension that allows you to press the 
 1. Install the extension from the Chrome Web Store
 2. Navigate to any ALEKS course or assessment
 3. When you're ready to submit an answer, simply press the **Enter** key
-4. The extension will automatically click the appropriate button:
-   - "Check Answer" button (if available and not disabled)
-   - "Next" button (if "Check Answer" is not available)
+4. Click the InterALEKS icon to open Settings:
+   - Choose your login method: ALEKS or McGraw Hill
+   - Enable/disable Enter key actions
+   - Enable/disable auto-redirects and set the double-check delay
+5. Press Enter when working in ALEKS. The extension will click the most relevant action based on the current page state (see priority list above).
 
 ### Redirect behavior and settings
-- If ALEKS shows a page saying "Sorry, this page cannot be displayed due to your browser setting" and mentions cookies being blocked, the extension will automatically redirect you to the login page you prefer.
-- If the page title contains "Session Closed" (like "ALEKS - Session Closed") or "Sorry, this page cannot be displayed due to your browser setting" (like "ALEKS - Sorry, this page cannot be displayed due to your browser setting."), InterALEKS will redirect you to your chosen login page.
-- The extension also checks page content for these messages as a fallback.
-- Click the extension icon to open settings and choose your login method:
-  - **ALEKS** (default): `https://www.aleks.com/login`
-  - **McGraw Hill**: `https://my.mheducation.com/login/`
-- Your selection is saved using browser sync storage and used for future redirects.
+- If ALEKS shows a page saying "Sorry, this page cannot be displayed due to your browser setting" or the title contains "Session Closed", InterALEKS redirects to your chosen login.
+- Title-based detection: "ALEKS - Session Closed" and "ALEKS - Sorry, this page cannot be displayed due to your browser setting."
+- Body-text fallback detection for reliability.
+- Settings available in the popup:
+  - Login method
+  - Enable Enter actions
+  - Block Enter when Calculator is visible
+  - Enable auto-redirects
+  - Redirect double-check delay (No delay, 2s, 3s, 5s)
+  - Login targets: **ALEKS** `https://www.aleks.com/login`, **McGraw Hill** `https://my.mheducation.com/login/`
 
 ## 🔧 Technical Details
 
 - **Manifest Version**: 3
-- **Permissions**: Uses storage and access to ALEKS and McGraw Hill domains
+- **Permissions**: Storage; host access limited to ALEKS (redirects navigate to McGraw Hill without injection)
 - **Content Script**: Injects functionality into ALEKS pages
 - **Browser Support**: Chrome and Chromium-based browsers
 
@@ -57,9 +64,9 @@ InterALEKS is a simple but useful Chrome extension that allows you to press the 
 ```
 InterALEKS/
 ├── manifest.json          # Extension configuration
-├── content.js            # Main functionality script
-├── popup.html            # Settings UI (choose login method)
-├── popup.js              # Settings logic (persist preference)
+├── content.js            # Main functionality script (enter + redirects)
+├── popup.html            # Settings UI (modern dark design)
+├── popup.js              # Settings logic (load/save/reset via sync storage)
 └── README.md             # This file
 ```
 
@@ -107,10 +114,14 @@ For support, questions, or feedback:
 
 ## 🔄 Version History
 
+- **v1.1** (September 25, 2025)
+  - New popup design with dark theme and sections
+  - Settings: Enable Enter, Block Calculator, Enable Redirects, Redirect Delay, Login Method
+  - Title-based redirect detection; configurable double-check delay
+  - Expanded Enter action coverage and safer button prioritization
+
 - **v1.0** (November 23, 2024)
-  - Initial release
-  - Enter key support for ALEKS answer submission
-  - Smart button detection for Check Answer and Next buttons
+  - Initial release with Enter key support and basic detection
 
 ## ⚠️ Disclaimer
 
