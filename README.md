@@ -1,10 +1,10 @@
-# ALEKS Helper
+# InterALEKS
 
 A Chrome extension that enables the Enter key for answer submission on ALEKS (Assessment and Learning in Knowledge Spaces).
 
 ## 📖 Overview
 
-ALEKS Helper is a simple but useful Chrome extension that allows you to press the Enter key when submitting answers on the ALEKS platform. This improves the user experience by providing a more intuitive way to submit answers without having to click the submit button with your mouse.
+InterALEKS is a simple but useful Chrome extension that allows you to press the Enter key when submitting answers on the ALEKS platform. This improves the user experience by providing a more intuitive way to submit answers without having to click the submit button with your mouse.
 
 ## ✨ Features
 
@@ -16,7 +16,7 @@ ALEKS Helper is a simple but useful Chrome extension that allows you to press th
 ## 🚀 Installation
 
 ### From Chrome Web Store
-1. Visit the [ALEKS Helper extension page](https://chromewebstore.google.com/detail/aleks-helper/obfahomodlignbjbgmajolpjicingedm)
+1. Visit the [InterALEKS extension page](https://chromewebstore.google.com/detail/aleks-helper/obfahomodlignbjbgmajolpjicingedm)
 2. Click "Add to Chrome"
 3. Confirm the installation when prompted
 
@@ -46,7 +46,7 @@ ALEKS Helper is a simple but useful Chrome extension that allows you to press th
 ## 📁 File Structure
 
 ```
-ALEKS Helper/
+InterALEKS/
 ├── manifest.json          # Extension configuration
 ├── content.js            # Main functionality script
 └── README.md            # This file
@@ -92,7 +92,7 @@ This project is open source. Feel free to use, modify, and distribute according 
 
 For support, questions, or feedback:
 - Email: loganl4business@gmail.com
-- Chrome Web Store: [ALEKS Helper](https://chromewebstore.google.com/detail/aleks-helper/obfahomodlignbjbgmajolpjicingedm)
+- Chrome Web Store: [InterALEKS](https://chromewebstore.google.com/detail/aleks-helper/obfahomodlignbjbgmajolpjicingedm)
 
 ## 🔄 Version History
 

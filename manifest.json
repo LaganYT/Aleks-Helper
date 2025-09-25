@@ -2,7 +2,7 @@
 "update_url": "https://clients2.google.com/service/update2/crx",
 
     "manifest_version": 3,
-    "name": "ALEKS Helper",
+    "name": "InterALEKS",
     "version": "1.0",
     "description": "Enable Enter key for answer submission",
     "host_permissions": ["https://*.aleks.com/*"], 
