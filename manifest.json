@@ -1,0 +1,15 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+    "manifest_version": 3,
+    "name": "ALEKS Helper",
+    "version": "1.0",
+    "description": "Enable Enter key for answer submission",
+    "host_permissions": ["https://*.aleks.com/*"], 
+    "content_scripts": [
+        {
+            "matches": ["https://*.aleks.com/*"],
+            "js": ["content.js"]
+        }
+    ]
+}
