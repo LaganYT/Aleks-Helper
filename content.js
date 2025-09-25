@@ -13,9 +13,6 @@ function checkAndRedirect() {
         const pageTitle = (document.title || "").toLowerCase();
         const bodyText = (document.body?.innerText || "").toLowerCase();
         
-        console.log("InterALEKS: Page title:", pageTitle);
-        console.log("InterALEKS: Body text preview:", bodyText.substring(0, 200));
-        
         const titleIndicators = [
             "session closed",
             "aleks - session closed",
@@ -31,10 +28,7 @@ function checkAndRedirect() {
         const titleMatch = titleIndicators.some((phrase) => pageTitle.includes(phrase));
         const bodyMatch = bodyIndicators.some((phrase) => bodyText.includes(phrase));
         const isBlockedPage = titleMatch || bodyMatch;
-        
-        console.log("InterALEKS: Title match:", titleMatch);
-        console.log("InterALEKS: Body match:", bodyMatch);
-        console.log("InterALEKS: Is blocked page:", isBlockedPage);
+
         
         if (!isBlockedPage) return;
 
@@ -46,7 +40,6 @@ function checkAndRedirect() {
                 mcgrawhill: "https://my.mheducation.com/login/",
             };
             const targetUrl = targets[method] || targets.aleks;
-            console.log("InterALEKS: Redirecting to:", targetUrl);
             if (typeof window !== "undefined" && targetUrl) {
                 window.location.replace(targetUrl);
             }
@@ -59,7 +52,7 @@ function checkAndRedirect() {
 // Wait for page to be fully loaded before checking
 function runCheckWithDelay() {
     checkAndRedirect();
-    // Double-check after 2 seconds
+    // Double-check after 3 seconds
     setTimeout(checkAndRedirect, 3000);
 }
 
@@ -76,17 +69,23 @@ if (document.readyState === 'loading') {
 function handleEnterKeyPress() {
     // Try to click the "Check Answer" button first
     const checkAnswerButton = document.getElementById("smt_bottomnav_button_input_checkAnswer");
-    if (checkAnswerButton && !checkAnswerButton.disabled) {
+    if (checkAnswerButton && !checkAnswerButton.disabled && checkAnswerButton.style.display !== "none") {
         checkAnswerButton.click();
         return;
     }
 
     // If "Check Answer" is not available, try the "Next" button
     const nextButton = document.getElementById("smt_bottomnav_button_input_learningCorrect");
-    if (nextButton && !nextButton.disabled) {
+    if (nextButton && !nextButton.disabled && nextButton.style.display !== "none") {
         nextButton.click();
         return;
     }
 
-    console.log("No actionable button found");
+    // Fallback: try generic learning/next button
+    const learningButton = document.getElementById("smt_bottomnav_button_input_learning");
+    if (learningButton && !learningButton.disabled && learningButton.style.display !== "none") {
+        learningButton.click();
+        return;
+    }
+
 }
