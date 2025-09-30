@@ -111,13 +111,13 @@ function handleEnterKeyPress() {
         "smt_bottomnav_button_input_next",
         "smt_bottomnav_button_input_nextPage",
         "smt_bottomnav_button_input_nextSurvey",
+         // Continue (variants)
+        "smt_bottomnav_button_input_startItem",
+        "smt_bottomnav_button_input_continue",
         // Try another
         "smt_bottomnav_button_input_tryAnother",
         // Check again (fallback)
         "smt_bottomnav_button_input_checkAnswer",
-        // Continue (variants)
-        "smt_bottomnav_button_input_startItem",
-        "smt_bottomnav_button_input_continue",
         // Generic learning/next
         "smt_bottomnav_button_input_learning",
     ];
